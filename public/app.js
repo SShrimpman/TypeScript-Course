@@ -1,12 +1,25 @@
 "use strict";
-// const anchor = document.querySelector('a')!;
-// // if(anchor) {
-// //     console.log(anchor.href);
-// // }
-// console.log(anchor.href);
-// const form = document.querySelector('form')!;
+// Classes
+class Invoice {
+    constructor(c, d, a) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+    format() {
+        return `${this.client} owes ${this.amount}€ for ${this.details}`;
+    }
+}
+const invOne = new Invoice("Mario", "work on the Mario Website", 250);
+const invTwo = new Invoice("Luigi", "work on the Luigi Website", 300);
+let invoices = [];
+invoices.push(invOne);
+invoices.push(invTwo);
+invOne.client = "Yoshi";
+invTwo.amount = 400;
+console.log(invOne, invTwo);
+console.log(invoices);
 const form = document.querySelector('.new-item-form');
-// console.log(form.children);
 // Inputs
 const type = document.querySelector('#type');
 const toFrom = document.querySelector('#toFrom');
