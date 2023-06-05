@@ -28,39 +28,25 @@ form.addEventListener('submit', (e: Event) => {
     list.render(doc, type.value, 'end');
 });
 
-// GENERICS
+// ENUMS
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
 
-const addUID = <T extends {name: string}>(obj: T) => {
-    let uid = Math.floor(Math.random() * 100);
-    return {...obj, uid};
-}
-
-let docOne = addUID({name: 'Yoshi', age: 40});
-// let docTwo = addUID('Hello');
-
-console.log(docOne.age);
-
-// With Interfaces
 interface Resource<T> {
-// interface Resource {
     uid: number;
-    resourceName: string;
+    resourceType: ResourceType;
     data: T;
-    // data: object
 }
 
-const docThree: Resource<object> = {
-// const docThree: Resource = {
+const docOne: Resource<object> = {
     uid: 1,
-    resourceName: 'person',
-    // data: { name: 'Shaun'} // This is fine when the resource interface has 'data: object'
-    data: { name: 'shaun' }
+    resourceType: ResourceType.BOOK,
+    data: { title: 'name of the wind'}
 }
 
-const docFour: Resource<string[]> = {
-    uid: 2,
-    resourceName: 'shopping list',
-    data: ['bread', 'milk', 'toliet roll']
+const docTwo: Resource<object> = {
+    uid: 10,
+    resourceType: ResourceType.PERSON,
+    data: { name: 'yoshi'}
 }
 
-console.log(docThree, docFour);
+console.log(docOne, docTwo);

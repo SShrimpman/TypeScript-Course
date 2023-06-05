@@ -21,24 +21,23 @@ form.addEventListener('submit', (e) => {
     }
     list.render(doc, type.value, 'end');
 });
-// GENERICS
-const addUID = (obj) => {
-    let uid = Math.floor(Math.random() * 100);
-    return Object.assign(Object.assign({}, obj), { uid });
-};
-let docOne = addUID({ name: 'Yoshi', age: 40 });
-// let docTwo = addUID('Hello');
-console.log(docOne.age);
-const docThree = {
-    // const docThree: Resource = {
+// ENUMS
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+const docOne = {
     uid: 1,
-    resourceName: 'person',
-    // data: { name: 'Shaun'} // This is fine when the resource interface has 'data: object'
-    data: { name: 'shaun' }
+    resourceType: ResourceType.BOOK,
+    data: { title: 'name of the wind' }
 };
-const docFour = {
-    uid: 2,
-    resourceName: 'shopping list',
-    data: ['bread', 'milk', 'toliet roll']
+const docTwo = {
+    uid: 10,
+    resourceType: ResourceType.PERSON,
+    data: { name: 'yoshi' }
 };
-console.log(docThree, docFour);
+console.log(docOne, docTwo);
