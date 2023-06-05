@@ -1,3 +1,34 @@
+// Interfaces
+interface IsPerson {
+    name:  string;
+    age:  number;
+    speak(a: string): void;
+    spend(a: number): number;
+}
+
+const me: IsPerson = {
+    name: 'Shaun',
+    age: 30,
+    speak(text: string): void {
+        console.log(text);
+    },
+    spend(amount: number): number {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+
+let someone: IsPerson; // Forcing the variable to follow the Interface structure
+const greetPerson = (person: IsPerson) => {  // We can only pass an Object that matches the 'person' interface
+    console.log('Hello ', person.name);
+}
+
+// greetPerson({name: 'Shaun'}); Gonna get an error because it does not match the 'IsPerson' interface
+greetPerson(me); // It matches the IsPerson interface, so it returns what the function does, in this case it's the console.log()
+
+console.log(me);
+
+
 import { Invoice } from './classes/Invoice.js'
 
 const invOne = new Invoice("Mario", "work on the Mario Website", 250);
