@@ -27,3 +27,40 @@ form.addEventListener('submit', (e: Event) => {
     
     list.render(doc, type.value, 'end');
 });
+
+// GENERICS
+
+const addUID = <T extends {name: string}>(obj: T) => {
+    let uid = Math.floor(Math.random() * 100);
+    return {...obj, uid};
+}
+
+let docOne = addUID({name: 'Yoshi', age: 40});
+// let docTwo = addUID('Hello');
+
+console.log(docOne.age);
+
+// With Interfaces
+interface Resource<T> {
+// interface Resource {
+    uid: number;
+    resourceName: string;
+    data: T;
+    // data: object
+}
+
+const docThree: Resource<object> = {
+// const docThree: Resource = {
+    uid: 1,
+    resourceName: 'person',
+    // data: { name: 'Shaun'} // This is fine when the resource interface has 'data: object'
+    data: { name: 'shaun' }
+}
+
+const docFour: Resource<string[]> = {
+    uid: 2,
+    resourceName: 'shopping list',
+    data: ['bread', 'milk', 'toliet roll']
+}
+
+console.log(docThree, docFour);

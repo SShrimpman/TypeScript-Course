@@ -21,3 +21,24 @@ form.addEventListener('submit', (e) => {
     }
     list.render(doc, type.value, 'end');
 });
+// GENERICS
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docOne = addUID({ name: 'Yoshi', age: 40 });
+// let docTwo = addUID('Hello');
+console.log(docOne.age);
+const docThree = {
+    // const docThree: Resource = {
+    uid: 1,
+    resourceName: 'person',
+    // data: { name: 'Shaun'} // This is fine when the resource interface has 'data: object'
+    data: { name: 'shaun' }
+};
+const docFour = {
+    uid: 2,
+    resourceName: 'shopping list',
+    data: ['bread', 'milk', 'toliet roll']
+};
+console.log(docThree, docFour);
